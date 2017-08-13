@@ -7,9 +7,11 @@ lazy val root = (project in file(".")).
       scalaVersion := "2.12.3",
       version      := "0.1.0-SNAPSHOT"
     )),
-    name := "Hello",
+    name := "BloomFilterSet",
     libraryDependencies ++= Seq(
       scalaTest % Test,
       scalaCheck % Test
     )
+
   )
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaCheck, "-minSuccessfulTests", "10000")
