@@ -1,13 +1,11 @@
 package org.craftycoder.bloomfilter
 
-import java.security.MessageDigest
-
 import scala.annotation.tailrec
 
-class BloomFilterSet {
+class BloomFilterSet(val size: Int = 10000, val hashRounds: Int = 10) {
 
-  private val size: Int = 10000
-  private val hashRounds: Int = 10
+  require(size > 0, "Size should be higher than 0")
+  require(hashRounds > 0, "HashRounds should be higher than 0")
 
   private val EMPTY_BIT: Byte = 0
   private val FULL_BIT: Byte = 1
