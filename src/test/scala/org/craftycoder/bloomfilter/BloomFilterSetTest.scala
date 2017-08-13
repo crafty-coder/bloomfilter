@@ -1,8 +1,10 @@
 package org.craftycoder.bloomfilter
 
+import org.scalacheck._
+import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, WordSpec}
 
-class BloomFilterSetTest extends WordSpec with Matchers {
+class BloomFilterSetTest extends WordSpec with Matchers with PropertyChecks {
 
   "BloomFilterSet" should {
 
@@ -10,7 +12,11 @@ class BloomFilterSetTest extends WordSpec with Matchers {
 
     "Not Contain any word if no words have been put" in {
 
-      set.contains("word") shouldBe false
+      val inputWord: Gen[String] = Gen.alphaNumStr
+
+      forAll(inputWord) { word =>
+        set.contains(word) shouldBe false
+      }
 
     }
   }
