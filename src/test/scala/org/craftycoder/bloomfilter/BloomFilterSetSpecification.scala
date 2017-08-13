@@ -22,7 +22,7 @@ object BloomFilterSetSpecification extends Properties("BloomFilterSet") {
     }
   }
 
-  //This property could fail in some few cases
+  //This property fail in some few cases, since this implementation allows false positives
   property("Not contain a word if that word is not put before") = {
 
     val set = new BloomFilterSet
